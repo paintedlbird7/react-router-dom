@@ -1,6 +1,7 @@
 // src/components/PokemonForm/PokemonForm.jsx
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const initialState = {
   name: '',
@@ -10,22 +11,22 @@ const initialState = {
 
 const PokemonForm = (props) => {
   const [formData, setFormData] = useState(initialState);
+  const navigate = useNavigate();
 
-//   const handleSubmit = (evt) => {
-//     evt.preventDefault();
-//     // TODO : complete submit logic
-//   };
+
 
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
-  // src/components/PokemonForm/PokemonForm.jsx
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.addPokemon(formData);
     setFormData(initialState);
+    // Navigate to the pokemon list page after submission.
+    navigate('/pokemon');
+
   };
 
   return (
