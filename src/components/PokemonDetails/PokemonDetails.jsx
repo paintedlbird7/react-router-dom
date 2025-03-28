@@ -5,19 +5,27 @@ import { useParams } from 'react-router';
 const PokemonDetails = (props) => {
     // Always verify that any props are being passed correctly!
     console.log(props); 
+    const { pokemonId } = useParams();
+    // console.log('pokemonId:', pokemonId);
+    const singlePokemon = props.pokemon.find((poke) => (
+        poke._id === Number(pokemonId)
+      ));
+      console.log('Pokemon Object:', singlePokemon)
 
-const { pokemonId } = useParams();
-console.log('pokemonId:', pokemonId);
+// const params = useParams();
+// console.log(params);
 
+// const { pokemonId } = useParams();
+// console.log('pokemonId:', pokemonId);
     return (
       <>
-        <h2>Pokemon Details</h2>
-        <dl>
+      <h2>{singlePokemon.name}</h2>
+      <dl>
           <dt>Weight:</dt>
-          <dd></dd>
+          <dd>{singlePokemon.weight}</dd>
           <dt>Height:</dt>
-          <dd></dd>
-        </dl>
+          <dd>{singlePokemon.height}</dd>
+          </dl>
       </>
     );
   };
